@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  base:
+    build:
+      context: ./
+      dockerfile: "docker/base/Dockerfile"
+  master:
+    build:
+      context: ./
+      dockerfile: "docker/master/Dockerfile"
+    env_file: ./docker/.env
+    environment:
+      - ORB_ENV=development
+    volumes:
+      - ./:/opt/orb
+    ports:
+      - "3567:3567"
+    networks:
+      default:
+        aliases:
+          - master.local
+
+networks:
+  default:
+
+volumes:
+  node_modules:
+    driver: local
+  bundle:
+    driver: local
