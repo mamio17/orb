@@ -16,12 +16,10 @@ services:
       - ./:/opt/orb
     ports:
       - "3567:3567"
-    devices:
-      - /dev/snd
     networks:
       default:
         aliases:
-          - master.local
+          - master.orb.local
 
 networks:
   default:

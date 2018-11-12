@@ -1,11 +1,10 @@
 FROM orb_base
 
-RUN mkdir -p /opt/orb
-WORKDIR /opt/orb
+ENV ORB_DIR /opt/orb
 
-COPY ./Cargo.toml /opt/orb/Cargo.toml
-COPY ./src /opt/orb/src
-ADD ./AbJo_Drum_and_Freak.wav /opt/orb/assets/sample.wav
+RUN mkdir -p ${ORB_DIR}
+WORKDIR ${ORB_DIR}
+COPY ./ ${ORB_DIR}/
+VOLUME ${ORB_DIR}
 
 RUN cargo build
-
